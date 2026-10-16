@@ -136,6 +136,10 @@
     .hero-visual { position:relative; min-width:0; width:100%; aspect-ratio: 1 / 1.02; max-height:650px; }
     .hero-visual::before { content:""; position:absolute; inset:7% 2% 3% 5%; border-radius:48% 52% 55% 45%; background:radial-gradient(ellipse at 54% 47%,rgba(219,229,255,.58),rgba(231,228,255,.23) 42%,transparent 69%); filter:blur(15px); }
     .hero-visual svg { position:relative; z-index:1; width:100%; height:100%; overflow:visible; }
+    .hero-portrait-card { position:absolute; z-index:2; inset:8% 15% 5% 25%; overflow:hidden; border:1px solid rgba(255,255,255,.3); border-radius:34px; background:radial-gradient(circle at 53% 28%,#3e4a51 0%,#202a30 38%,#10171c 100%); box-shadow:0 26px 70px rgba(18,49,74,.24),inset 0 0 0 1px rgba(255,255,255,.08); }
+    .hero-portrait-card::before { content:""; position:absolute; inset:0; background:linear-gradient(145deg,rgba(32,184,212,.16),transparent 38%,rgba(0,0,0,.28) 100%); pointer-events:none; }
+    .hero-portrait-canvas { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; filter:contrast(1.04) saturate(.92); }
+    .hero-portrait-label { position:absolute; z-index:1; left:1rem; bottom:1rem; padding:.55rem .7rem; border:1px solid rgba(255,255,255,.18); border-radius:10px; background:rgba(10,20,26,.56); backdrop-filter:blur(10px); color:rgba(255,255,255,.78); font:700 .58rem/1.3 ui-monospace,Menlo,monospace; letter-spacing:.08em; }
     .visual-caption { position:absolute; z-index:3; border:1px solid rgba(208,220,243,.85); background:rgba(255,255,255,.78); backdrop-filter:blur(12px); border-radius:13px; padding:.7rem .85rem; box-shadow:0 12px 38px rgba(45,77,142,.07); }
     .visual-caption b { display:block; color:#304a78; font-size:.72rem; letter-spacing:.02em; }
     .visual-caption small { display:block; color:#8a9bb7; margin-top:.1rem; font:600 .59rem/1.4 ui-monospace,Menlo,monospace; letter-spacing:.05em; }
@@ -158,6 +162,10 @@
     .about-copy { color:#65748b; font-size:.95rem; line-height:2; }
     .about-copy p { margin:.9rem 0; }
     .about-note { border-left:2px solid transparent; border-image:linear-gradient(to bottom,var(--blue),var(--purple)) 1; padding:.25rem 0 .25rem 1rem; margin-top:1.4rem; color:#435777; font-weight:650; font-size:.91rem; }
+    .about-profile { display:flex; align-items:center; gap:1rem; margin-top:1.6rem; padding:1rem; border:1px solid #dbe6f3; border-radius:20px; background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(234,245,251,.72)); box-shadow:0 14px 34px rgba(18,49,74,.06); }
+    .about-profile img { width:86px; height:86px; flex:0 0 auto; object-fit:cover; object-position:center; border-radius:18px; border:3px solid #fff; box-shadow:0 7px 18px rgba(18,49,74,.14); }
+    .about-profile figcaption { color:#6d7e92; font-size:.78rem; line-height:1.7; }
+    .about-profile strong { display:block; color:#12314A; font-size:.95rem; font-weight:800; }
     .principle-panel { border-radius:var(--radius-card); border:1px solid #e0e8f6; background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(246,249,255,.92)); padding:clamp(1.35rem,3vw,2.15rem); box-shadow:0 20px 55px rgba(40,74,135,.055); position:relative; overflow:hidden; }
     .principle-panel::after { content:""; position:absolute; width:210px;height:210px; border:1px solid rgba(110,139,210,.13); border-radius:50%; right:-100px;top:-95px; box-shadow:0 0 0 23px rgba(110,139,210,.035),0 0 0 48px rgba(110,139,210,.025); pointer-events:none; }
     .principle-head { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-bottom:1.2rem; border-bottom:1px solid #e9eef8; position:relative; z-index:1; }
@@ -266,6 +274,21 @@
     .case-more-content strong { color:#344b73; }
     .portfolio-footnote { padding:1rem 1.4rem; background:#f8faff; border-top:1px solid #e8eef8; color:#8390a5; font-size:.73rem; display:flex; gap:.7rem; align-items:flex-start; }
     .portfolio-footnote svg { color:#7692cf; flex:0 0 auto; margin-top:.15rem; }
+    .project-gallery { margin-top:4.5rem; }
+    .project-gallery-head { display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; margin-bottom:1.6rem; }
+    .project-gallery-head p { max-width:520px; margin:0; color:#718098; font-size:.86rem; line-height:1.8; }
+    .project-gallery-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.85rem; }
+    .project-category { border:1px solid #dbe6f3; border-radius:22px; background:rgba(255,255,255,.72); overflow:hidden; margin-top:1rem; }
+    .project-category summary { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.05rem 1.25rem; cursor:pointer; list-style:none; color:#12314A; font-weight:820; }
+    .project-category summary::-webkit-details-marker { display:none; }
+    .project-category summary::after { content:"＋"; display:grid; place-items:center; width:28px; height:28px; border-radius:50%; color:#0068B5; background:#EAF5FB; font-size:1.05rem; }
+    .project-category[open] summary { border-bottom:1px solid #e5edf4; }
+    .project-category[open] summary::after { content:"−"; }
+    .project-category-count { margin-left:auto; color:#7a8da2; font:650 .68rem/1 ui-monospace,Menlo,monospace; }
+    .project-category-body { padding:1rem; }
+    .project-photo { margin:0; aspect-ratio:4/3; overflow:hidden; border:1px solid #dbe6f3; border-radius:17px; background:#eaf1f6; box-shadow:0 10px 26px rgba(18,49,74,.05); }
+    .project-photo img { display:block; width:100%; height:100%; object-fit:cover; transition:transform var(--motion-medium) var(--ease),filter var(--motion-medium) ease; }
+    .project-photo:hover img { transform:scale(1.06); filter:saturate(1.08); }
 
     /* Insights */
     .insights-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; margin-top:3rem; }
@@ -349,6 +372,7 @@
       .expertise-grid,.insights-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .expertise-card { min-height:330px; }
       .insight-card { min-height:300px; }
+      .project-gallery-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
     }
     @media (max-width: 820px) {
       .desktop-nav,.header-cta-wrap { display:none; }
@@ -364,6 +388,7 @@
       .hero h1 { max-width:670px; font-size:clamp(2.75rem,8vw,4.5rem); }
       .hero-description { max-width:630px; }
       .hero-visual { width:min(100%,650px); margin:-.1rem auto 0; max-height:none; aspect-ratio:1.13 / 1; }
+      .hero-portrait-card { inset:8% 19% 5% 28%; }
       .caption-top { right:3%; top:8%; }
       .caption-bottom { left:3%; bottom:8%; }
       .hero-statbar { margin-top:1.3rem; }
@@ -378,6 +403,10 @@
       .contact-panel { grid-template-columns:1fr; }
       .contact-aside { border-left:0; border-top:1px solid rgba(208,220,243,.83); }
       .section-topline { align-items:flex-start; flex-direction:column; gap:.8rem; }
+      .project-gallery-head { align-items:flex-start; flex-direction:column; gap:.75rem; }
+      .project-gallery-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .project-category summary { padding:.9rem 1rem; }
+      .project-category-body { padding:.7rem; }
     }
     @media (max-width: 560px) {
       :root { --header-height:66px; --section-space:4.5rem; }
@@ -395,6 +424,7 @@
       .connect-status { justify-content:center; min-height:0; }
       .hero-techline { gap:.6rem .85rem; margin-top:1.65rem; font-size:.68rem; }
       .hero-visual { width:calc(100% + .7rem); margin-left:-.35rem; aspect-ratio:1 / 1.03; }
+      .hero-portrait-card { inset:8% 16% 5% 25%; border-radius:26px; }
       .visual-caption { padding:.52rem .62rem; border-radius:10px; }
       .visual-caption b { font-size:.62rem; }
       .visual-caption small { font-size:.51rem; }
@@ -451,6 +481,8 @@
       .contact-copy p { font-size:.87rem; }
       .contact-actions { display:grid; grid-template-columns:1fr; }
       .contact-actions .btn { width:100%; }
+      .about-profile { align-items:flex-start; }
+      .project-gallery-grid { gap:.6rem; }
       .contact-aside { padding:1.35rem 1.25rem; }
       .footer-main { flex-direction:column; gap:1.5rem; }
       .footer-bottom { flex-direction:column; gap:.8rem; }
@@ -564,6 +596,10 @@
         </div>
 
         <div class="hero-visual" aria-label="材料微觀結構、數據流線與精密層狀結構的原創科學示意圖" role="img">
+          <div class="hero-portrait-card" aria-label="謝宗元專業形象照">
+            <canvas class="hero-portrait-canvas" id="heroPortraitCanvas" aria-hidden="true"></canvas>
+            <span class="hero-portrait-label">TSUNG-YUAN HSIEH · MATERIALS &amp; PROCESS</span>
+          </div>
           <div class="visual-caption caption-top"><b>STRUCTURE / 01</b><small>MICRO-SCALE MATERIALS</small></div>
           <div class="visual-caption caption-bottom"><b>PROCESS → PERFORMANCE</b><small>OBSERVE · MEASURE · ITERATE</small></div>
           <svg viewBox="0 0 700 690" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -655,6 +691,10 @@
             <div class="tag-row" style="margin-top:1.4rem">
               <span class="tag">Polymer &amp; Composite</span><span class="tag">Optical Measurement</span><span class="tag">Thin-film Process</span><span class="tag">SOP &amp; RCA</span>
             </div>
+            <figure class="about-profile">
+              <img src="作品集/大頭照-Photoroom.jpg" alt="謝宗元個人照片" loading="lazy">
+              <figcaption><strong>謝宗元｜材料與製程技術實踐者</strong>以實務場景為起點，將材料、製程與量測問題整理成可理解、可驗證的技術路徑。</figcaption>
+            </figure>
           </div>
           <div class="principle-panel reveal">
             <div class="principle-head"><strong>工作方法 / Working Principles</strong><span>METHOD / 04</span></div>
@@ -871,6 +911,180 @@
       </div>
     </section>
 
+    <!-- PROJECT SCENES / PHOTO GALLERY -->
+    <section class="section section-soft project-gallery" id="project-gallery" aria-labelledby="projectGalleryTitle">
+      <div class="container">
+        <div class="project-gallery-head reveal">
+          <div><span class="section-kicker">PROJECT SCENES / 07</span><h2 class="section-heading" id="projectGalleryTitle">專案現場與實務紀錄</h2></div>
+          <p>依照作品集資料夾分類整理，點擊分類標題即可展開或隱藏照片。</p>
+        </div>
+        <details class="project-category reveal" open>
+          <summary><span>高分子複合材料</span><span class="project-category-count">44 PHOTOS</span></summary>
+          <div class="project-category-body"><div class="project-gallery-grid">
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230614_103451.JPG" alt="高分子複合材料專案工作場景：20230614_103451.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230614_103427.JPG" alt="高分子複合材料專案工作場景：20230614_103427.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230613_174352.JPG" alt="高分子複合材料專案工作場景：20230613_174352.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230613_174351.JPG" alt="高分子複合材料專案工作場景：20230613_174351.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230613_101327.JPG" alt="高分子複合材料專案工作場景：20230613_101327.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230613_101249.JPG" alt="高分子複合材料專案工作場景：20230613_101249.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230610_133403.JPG" alt="高分子複合材料專案工作場景：20230610_133403.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230610_133341.JPG" alt="高分子複合材料專案工作場景：20230610_133341.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230610_133318.JPG" alt="高分子複合材料專案工作場景：20230610_133318.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230610_133256.JPG" alt="高分子複合材料專案工作場景：20230610_133256.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230610_133226.JPG" alt="高分子複合材料專案工作場景：20230610_133226.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230610_133133.JPG" alt="高分子複合材料專案工作場景：20230610_133133.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230610_104753.JPG" alt="高分子複合材料專案工作場景：20230610_104753.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230610_104731.JPG" alt="高分子複合材料專案工作場景：20230610_104731.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230610_091351.JPG" alt="高分子複合材料專案工作場景：20230610_091351.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230610_091304.JPG" alt="高分子複合材料專案工作場景：20230610_091304.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230610_091123.JPG" alt="高分子複合材料專案工作場景：20230610_091123.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230609_174509.JPG" alt="高分子複合材料專案工作場景：20230609_174509.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230609_174420.JPG" alt="高分子複合材料專案工作場景：20230609_174420.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230609_174414.JPG" alt="高分子複合材料專案工作場景：20230609_174414.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230609_174402.JPG" alt="高分子複合材料專案工作場景：20230609_174402.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230608_163817.JPG" alt="高分子複合材料專案工作場景：20230608_163817.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230608_163751.JPG" alt="高分子複合材料專案工作場景：20230608_163751.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230608_163631.JPG" alt="高分子複合材料專案工作場景：20230608_163631.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230608_163537.JPG" alt="高分子複合材料專案工作場景：20230608_163537.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230608_085608.JPG" alt="高分子複合材料專案工作場景：20230608_085608.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230608_085532.JPG" alt="高分子複合材料專案工作場景：20230608_085532.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230608_085506.JPG" alt="高分子複合材料專案工作場景：20230608_085506.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230608_085410.JPG" alt="高分子複合材料專案工作場景：20230608_085410.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230608_085356.JPG" alt="高分子複合材料專案工作場景：20230608_085356.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230608_085146.JPG" alt="高分子複合材料專案工作場景：20230608_085146.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230608_085017.JPG" alt="高分子複合材料專案工作場景：20230608_085017.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230524_173415.JPG" alt="高分子複合材料專案工作場景：20230524_173415.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230524_173351.JPG" alt="高分子複合材料專案工作場景：20230524_173351.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230523_111554.JPG" alt="高分子複合材料專案工作場景：20230523_111554.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230523_082402.JPG" alt="高分子複合材料專案工作場景：20230523_082402.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230520_171317.JPG" alt="高分子複合材料專案工作場景：20230520_171317.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230517_154941.JPG" alt="高分子複合材料專案工作場景：20230517_154941.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230517_152440.JPG" alt="高分子複合材料專案工作場景：20230517_152440.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230516_170240.JPG" alt="高分子複合材料專案工作場景：20230516_170240.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230516_131626.JPG" alt="高分子複合材料專案工作場景：20230516_131626.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230511_102220.JPG" alt="高分子複合材料專案工作場景：20230511_102220.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230429_152153.JPG" alt="高分子複合材料專案工作場景：20230429_152153.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子複合材料/20230429_091153.JPG" alt="高分子複合材料專案工作場景：20230429_091153.JPG" loading="lazy"></figure>
+          </div></div>
+        </details>
+        <details class="project-category reveal">
+          <summary><span>高分子材料及光學檢測</span><span class="project-category-count">42 PHOTOS</span></summary>
+          <div class="project-category-body"><div class="project-gallery-grid">
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_131437.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_131437.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/1724896319509.jpg" alt="高分子材料及光學檢測專案工作場景：1724896319509.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_131103.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_131103.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_131051.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_131051.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/1724896238956.jpg" alt="高分子材料及光學檢測專案工作場景：1724896238956.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240320_150600.JPG" alt="高分子材料及光學檢測專案工作場景：20240320_150600.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240320_150553.JPG" alt="高分子材料及光學檢測專案工作場景：20240320_150553.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/1724834092666.jpg" alt="高分子材料及光學檢測專案工作場景：1724834092666.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/1724896488982.jpg" alt="高分子材料及光學檢測專案工作場景：1724896488982.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/1724833986676.jpg" alt="高分子材料及光學檢測專案工作場景：1724833986676.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/1724833876544.jpg" alt="高分子材料及光學檢測專案工作場景：1724833876544.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_144739.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_144739.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_132710.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_132710.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_132705.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_132705.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_132619.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_132619.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_132611.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_132611.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_132206.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_132206.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_132155.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_132155.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_151812.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_151812.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_151541.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_151541.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_150127.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_150127.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_145853.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_145853.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_152802.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_152802.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_152528.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_152528.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_153656.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_153656.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_154006.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_154006.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_154014.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_154014.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20240412_162545.JPG" alt="高分子材料及光學檢測專案工作場景：20240412_162545.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250115_144255.JPG" alt="高分子材料及光學檢測專案工作場景：20250115_144255.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250115_144406.JPG" alt="高分子材料及光學檢測專案工作場景：20250115_144406.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250115_144402.JPG" alt="高分子材料及光學檢測專案工作場景：20250115_144402.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250115_144339.JPG" alt="高分子材料及光學檢測專案工作場景：20250115_144339.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250115_144335.JPG" alt="高分子材料及光學檢測專案工作場景：20250115_144335.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250213_152947.JPG" alt="高分子材料及光學檢測專案工作場景：20250213_152947.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250213_152944.JPG" alt="高分子材料及光學檢測專案工作場景：20250213_152944.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250214_161807.JPG" alt="高分子材料及光學檢測專案工作場景：20250214_161807.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250214_162814.JPG" alt="高分子材料及光學檢測專案工作場景：20250214_162814.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250214_163031.JPG" alt="高分子材料及光學檢測專案工作場景：20250214_163031.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250226_090237.JPG" alt="高分子材料及光學檢測專案工作場景：20250226_090237.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250226_090128.JPG" alt="高分子材料及光學檢測專案工作場景：20250226_090128.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250226_090101.JPG" alt="高分子材料及光學檢測專案工作場景：20250226_090101.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/高分子材料及光學檢測/20250115_144259.JPG" alt="高分子材料及光學檢測專案工作場景：20250115_144259.JPG" loading="lazy"></figure>
+          </div></div>
+        </details>
+        <details class="project-category reveal">
+          <summary><span>PCB 板電鍍及檢測</span><span class="project-category-count">21 PHOTOS</span></summary>
+          <div class="project-category-body"><div class="project-gallery-grid">
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/line_506744993868.jpg" alt="PCB 板電鍍及檢測專案工作場景：line_506744993868.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1661864196258.jpg" alt="PCB 板電鍍及檢測專案工作場景：1661864196258.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1661864070774.jpg" alt="PCB 板電鍍及檢測專案工作場景：1661864070774.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1661862861896.jpg" alt="PCB 板電鍍及檢測專案工作場景：1661862861896.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1661851335164.jpg" alt="PCB 板電鍍及檢測專案工作場景：1661851335164.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1661851207908.jpg" alt="PCB 板電鍍及檢測專案工作場景：1661851207908.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1661846377838.jpg" alt="PCB 板電鍍及檢測專案工作場景：1661846377838.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1661845424133.jpg" alt="PCB 板電鍍及檢測專案工作場景：1661845424133.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1661845381914.jpg" alt="PCB 板電鍍及檢測專案工作場景：1661845381914.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1661845360312.jpg" alt="PCB 板電鍍及檢測專案工作場景：1661845360312.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1661845333923.jpg" alt="PCB 板電鍍及檢測專案工作場景：1661845333923.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1658929256612.jpg" alt="PCB 板電鍍及檢測專案工作場景：1658929256612.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1640064814887.jpg" alt="PCB 板電鍍及檢測專案工作場景：1640064814887.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1640063849199.jpg" alt="PCB 板電鍍及檢測專案工作場景：1640063849199.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1634031530001.jpg" alt="PCB 板電鍍及檢測專案工作場景：1634031530001.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1634031418879.jpg" alt="PCB 板電鍍及檢測專案工作場景：1634031418879.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1630218930360.jpg" alt="PCB 板電鍍及檢測專案工作場景：1630218930360.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1630218912554.jpg" alt="PCB 板電鍍及檢測專案工作場景：1630218912554.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1630218871432.jpg" alt="PCB 板電鍍及檢測專案工作場景：1630218871432.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1630218856618.jpg" alt="PCB 板電鍍及檢測專案工作場景：1630218856618.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/PCB板電鍍及檢測/1626069636812.jpg" alt="PCB 板電鍍及檢測專案工作場景：1626069636812.jpg" loading="lazy"></figure>
+          </div></div>
+        </details>
+        <details class="project-category reveal">
+          <summary><span>有機半導體材料</span><span class="project-category-count">19 PHOTOS</span></summary>
+          <div class="project-category-body"><div class="project-gallery-grid">
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250605_135411.jpg" alt="有機半導體材料專案工作場景：20250605_135411.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250605_135346.jpg" alt="有機半導體材料專案工作場景：20250605_135346.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250605_135144.jpg" alt="有機半導體材料專案工作場景：20250605_135144.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250605_134650.jpg" alt="有機半導體材料專案工作場景：20250605_134650.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250522_135408.jpg" alt="有機半導體材料專案工作場景：20250522_135408.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250522_134913.jpg" alt="有機半導體材料專案工作場景：20250522_134913.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250522_133043.jpg" alt="有機半導體材料專案工作場景：20250522_133043.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250522_112142.jpg" alt="有機半導體材料專案工作場景：20250522_112142.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250520_140228.jpg" alt="有機半導體材料專案工作場景：20250520_140228.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250520_140140.jpg" alt="有機半導體材料專案工作場景：20250520_140140.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250520_102711.jpg" alt="有機半導體材料專案工作場景：20250520_102711.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250520_102659.jpg" alt="有機半導體材料專案工作場景：20250520_102659.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250520_102319.jpg" alt="有機半導體材料專案工作場景：20250520_102319.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250520_092039.jpg" alt="有機半導體材料專案工作場景：20250520_092039.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250512_095404.JPG" alt="有機半導體材料專案工作場景：20250512_095404.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250507_155928.JPG" alt="有機半導體材料專案工作場景：20250507_155928.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250507_155923.JPG" alt="有機半導體材料專案工作場景：20250507_155923.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250507_155915.JPG" alt="有機半導體材料專案工作場景：20250507_155915.JPG" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/有機半導體材料/20250507_152406.JPG" alt="有機半導體材料專案工作場景：20250507_152406.JPG" loading="lazy"></figure>
+          </div></div>
+        </details>
+        <details class="project-category reveal">
+          <summary><span>氣體檢測</span><span class="project-category-count">12 PHOTOS</span></summary>
+          <div class="project-category-body"><div class="project-gallery-grid">
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_135435.jpg" alt="氣體檢測專案工作場景：20260917_135435.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_135421.jpg" alt="氣體檢測專案工作場景：20260917_135421.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_105051.jpg" alt="氣體檢測專案工作場景：20260917_105051.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_105040.jpg" alt="氣體檢測專案工作場景：20260917_105040.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_103302.jpg" alt="氣體檢測專案工作場景：20260917_103302.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_103221.jpg" alt="氣體檢測專案工作場景：20260917_103221.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_103213.jpg" alt="氣體檢測專案工作場景：20260917_103213.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_103206.jpg" alt="氣體檢測專案工作場景：20260917_103206.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_103201.jpg" alt="氣體檢測專案工作場景：20260917_103201.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_101206.jpg" alt="氣體檢測專案工作場景：20260917_101206.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_101137.jpg" alt="氣體檢測專案工作場景：20260917_101137.jpg" loading="lazy"></figure>
+            <figure class="project-photo"><img src="作品集/氣體檢測/20260917_101127.jpg" alt="氣體檢測專案工作場景：20260917_101127.jpg" loading="lazy"></figure>
+          </div></div>
+        </details>
+      </div>
+    </section>
+
+
     <!-- INSIGHTS -->
     <section class="section" id="insights" aria-labelledby="insightsTitle">
       <div class="container">
@@ -1004,6 +1218,33 @@
     (function () {
       'use strict';
       const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const portraitCanvas = document.getElementById('heroPortraitCanvas');
+      if (portraitCanvas) {
+        const portraitImage = new Image();
+        portraitImage.onload = () => {
+          const box = portraitCanvas.getBoundingClientRect();
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          const width = Math.max(1, Math.round(box.width * dpr));
+          const height = Math.max(1, Math.round(box.height * dpr));
+          portraitCanvas.width = width;
+          portraitCanvas.height = height;
+          const context = portraitCanvas.getContext('2d', { willReadFrequently: true });
+          const scale = Math.max(width / portraitImage.naturalWidth, height / portraitImage.naturalHeight);
+          const drawWidth = portraitImage.naturalWidth * scale;
+          const drawHeight = portraitImage.naturalHeight * scale;
+          context.drawImage(portraitImage, (width - drawWidth) / 2, 0, drawWidth, drawHeight);
+          const pixels = context.getImageData(0, 0, width, height);
+          for (let i = 0; i < pixels.data.length; i += 4) {
+            const red = pixels.data[i];
+            const green = pixels.data[i + 1];
+            const blue = pixels.data[i + 2];
+            const whiteness = Math.min(red, green, blue);
+            if (whiteness > 220) pixels.data[i + 3] = Math.max(0, Math.round((255 - whiteness) * 7));
+          }
+          context.putImageData(pixels, 0, 0);
+        };
+        portraitImage.src = '作品集/大頭照-Photoroom.jpg';
+      }
       const header = document.getElementById('siteHeader');
       const menuButton = document.getElementById('menuButton');
       const mobileNav = document.getElementById('mobileNav');
